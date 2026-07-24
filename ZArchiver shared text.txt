@@ -1,0 +1,1195 @@
+local Z=game:GetService("Players")
+local N=game:GetService("TweenService")
+local S=game:GetService("UserInputService")
+local B=game:GetService("RunService")
+local p=game:GetService("ReplicatedStorage")
+local l=game:GetService("VirtualInputManager")
+local J=Z["LocalPlayer"]
+local C=workspace["CurrentCamera"]
+local K=J:GetMouse()
+local I=J:WaitForChild("PlayerGui")
+local Y=false
+local h=false
+local D=2000
+local H=false
+local j=false
+local E=false
+local e=false
+local k=false
+local q=false
+local o="Nearest"
+local y=1000
+local a=nil
+local z=nil
+local s=false
+local V=500
+local g=false
+local P=false
+local M=nil
+local d=2
+local X=false
+local f=false
+local w=false
+local W=-142485-(-142606)
+local n=false
+local T=nil
+local m=false
+local U=false
+local b=false
+local L=1
+local r=false
+local u=1
+local R=false for Z,N in ipairs(I:GetChildren())
+do
+    if N["Name"]:match("SacredUI") then
+        N:Destroy()
+    end
+end
+local O,t
+local G=false
+local c=2000
+local v=false
+spawn(function(...)for Z,N in pairs(p:GetDescendants())
+    do
+        if N:IsA("RemoteEvent")and N["Name"]=="RE/RegisterHit" then
+            O=N
+        end
+        if N:IsA("RemoteEvent")and N["Name"]=="RE/RegisterAttack" then
+            t=N
+        end
+    end
+end
+)
+local function  A(Z,...)if not O or not t  then
+    return
+end
+pcall(function(...)if not Z or#Z==0  then
+    return
+end
+local N={}for Z,S in pairs(Z)
+do
+    local B=S:FindFirstChild("Head")if B  then
+        table["insert"](N,{S,B})
+    end
+end
+if#N==0  then
+    return
+end
+t:FireServer(0)O:FireServer(N[1][2],N)
+end
+)
+end
+local function  F(...)if v  then
+    return
+end
+v=true
+spawn(function(...)while G
+    do
+        B["Stepped"]:Wait()
+        local N=J["Character"]
+        local S=N and N:FindFirstChild("HumanoidRootPart")if S  then
+            local N={}for Z,B in pairs(Z:GetPlayers())
+            do
+                if B~=J and B["Character"] then
+                    local Z=B["Character"]:FindFirstChild("Humanoid")
+                    local p=B["Character"]:FindFirstChild("HumanoidRootPart")if Z and(p and(Z["Health"]>0 and((p["Position"]-S["Position"]))["Magnitude"]<=c)) then
+                        table["insert"](N,B["Character"])
+                    end
+                end
+            end
+            local B=workspace:FindFirstChild("Enemies")if B  then
+                for Z,B in pairs(B:GetChildren())
+                do
+                    local p=B:FindFirstChild("Humanoid")
+                    local l=B:FindFirstChild("HumanoidRootPart")if p and(l and(p["Health"]>0 and((l["Position"]-S["Position"]))["Magnitude"]<=c)) then
+                        table["insert"](N,B)
+                    end
+                end
+            end
+            if#N>0  then
+                A(N)
+            end
+        end
+    end
+    v=false
+end
+)
+end
+local Q=false
+local x=16
+spawn(function(...)while true
+    do
+        wait(.05)if Q  then
+            local Z=J["Character"]and J["Character"]:FindFirstChildOfClass("Humanoid")if Z and Z["WalkSpeed"]~=x  then
+                Z["WalkSpeed"]=x
+            end
+        end
+    end
+end
+)
+local function  i(...)if r  then
+    return
+end
+r=true
+spawn(function(...)while b
+    do
+        wait(.1)pcall(function(...)
+            local Z=J["Character"]if Z  then
+                if Z:GetAttribute("DashLength")~=L  then
+                    Z:SetAttribute("DashLength",L)
+                end
+                if Z:GetAttribute("DashLengthAir")~=L  then
+                    Z:SetAttribute("DashLengthAir",L)
+                end
+            end
+        end
+        )
+    end
+    r=false
+end
+)
+end
+local function  ZT(...)b=false pcall(function(...)
+    local Z=J["Character"]if Z  then
+        Z:SetAttribute("DashLength",-464064-(-464065))Z:SetAttribute("DashLengthAir",-297551-(-297552))
+    end
+end
+)
+end
+local function  NT(...)pcall(function(...)
+    local Z=J["Character"]if Z  then
+        Z:SetAttribute("DashLength",L)Z:SetAttribute("DashLengthAir",L)
+    end
+end
+)
+end
+local ST=false
+local BT=nil
+local function  pT(Z,...)ST=Z if Z  then
+    BT=B["Stepped"]:Connect(function(...)
+        local Z=J["Character"]if Z and ST  then
+            for Z,N in pairs(Z:GetDescendants())
+            do
+                if N:IsA("BasePart") then
+                    N["CanCollide"]=false
+                end
+            end
+        end
+    end
+    )
+else
+    if BT  then
+        BT:Disconnect()BT=nil
+    end
+    local Z=J["Character"]if Z  then
+        for Z,N in pairs(Z:GetDescendants())
+        do
+            if N:IsA("BasePart") then
+                N["CanCollide"]=true
+            end
+        end
+    end
+end
+end
+J["CharacterAdded"]:Connect(function(...)if ST  then
+    wait(4846600.5)pT(true)
+end
+end
+)
+local lT={"attack","slash";"punch","m1","combo","hit","tool";"ability","skill";"kamehameha","bullet";"gun","sword";"melee";"fruit"}
+local function  JT(Z,...)
+    local N=string["lower"](Z["Name"])for Z,S in ipairs(lT)
+    do
+        if string["find"](N,S) then
+            return  true
+        end
+    end
+    if Z["Priority"]==Enum["AnimationPriority"]["Action"] then
+        return  true
+    end
+    return  false
+end
+local function  CT(...)
+    local Z=J["Character"]if not Z  then
+        return
+    end
+    local N=Z:FindFirstChild("Humanoid")if not N  then
+        return
+    end
+    local S=N:FindFirstChild("Animator")if not S  then
+        return
+    end
+    for Z,N in pairs(S:GetPlayingAnimationTracks())
+    do
+        if not JT(N) then
+            N:Stop(0)
+        end
+    end
+end
+local function  KT(...)
+    local Z=J["Character"]if not Z  then
+        return
+    end
+    local N=Z:FindFirstChild("HumanoidRootPart")
+    local S=Z:FindFirstChildOfClass("Humanoid")if not N or not S or S["Health"]<=0  then
+        return
+    end
+    CT()N["AssemblyLinearVelocity"]=Vector3["new"](N["AssemblyLinearVelocity"]["X"],V,N["AssemblyLinearVelocity"]["Z"])S:ChangeState(Enum["HumanoidStateType"]["Jumping"])
+end
+local function  IT(...)if n  then
+    return
+end
+local Z=J["Character"]if not Z  then
+    return
+end
+local N=Z:FindFirstChild("HumanoidRootPart")
+local S=Z:FindFirstChildOfClass("Humanoid")if not N or not S  then
+    return
+end
+local l=Z:FindFirstChild("Skull Guitar")or J["Backpack"]:FindFirstChild("Skull Guitar")if not l  then
+    return
+end
+n=true if l["Parent"]==J["Backpack"] then
+    S:EquipTool(l)task["wait"](.15)
+end
+pcall(function(...)
+    local Z=l:FindFirstChild("EquipEvent")if Z  then
+        Z:FireServer(true)
+    end
+    local N=p:FindFirstChild("Remotes")if N  then
+        local Z=N:FindFirstChild("Validator2")if Z  then
+            Z:FireServer(15627583,1)
+        end
+    end
+    local S=l:FindFirstChild("RemoteEvent")if S  then
+        S:FireServer("TAP",K["Hit"]["Position"])
+    end
+end
+)CT()
+local C=N["CFrame"]["LookVector"]
+local I=Vector3["new"](C["X"],0,C["Z"])if I["Magnitude"]>0  then
+    I=I["Unit"]
+end
+N["AssemblyLinearVelocity"]=Vector3["new"](I["X"]*(-124035-(-124185)),75,I["Z"]*(150))N["CFrame"]=N["CFrame"]+I*(5)S:ChangeState(Enum["HumanoidStateType"]["Jumping"])
+local Y Y=B["Stepped"]:Connect(function(...)if not Z or not Z["Parent"]or not S or not S["Parent"] then
+    if Y  then
+        Y:Disconnect()
+    end
+    return
+end
+S["AutoRotate"]=true
+local N=S:FindFirstChild("Animator")if N  then
+    for Z,N in pairs(N:GetPlayingAnimationTracks())
+    do
+        if not JT(N) then
+            N:Stop(0)
+        end
+    end
+end
+if S["FloorMaterial"]~=Enum["Material"]["Air"] then
+    if Y  then
+        Y:Disconnect()
+    end
+end
+end
+)task["wait"](.6)n=false
+end
+S["InputBegan"]:Connect(function(Z,N,...)if N  then
+    return
+end
+if Z["UserInputType"]==Enum["UserInputType"]["MouseButton1"]and f  then
+    IT()
+end
+end
+)
+local function  YT(...)
+    local function  Z(Z,...)l:SendKeyEvent(true,Z,false,game)task["wait"](.05)l:SendKeyEvent(false,Z,false,game)
+    end
+    Z(Enum["KeyCode"]["X"])task["wait"](.15)Z(Enum["KeyCode"]["Z"])
+end
+local hT={"FlashStepRegular";"FlashStepDraco";"FlashStep","Flashstep";"Soru"}
+local DT={"17555632156";"18461649274";"616006778";"616010882","5403485593";"5403491911"}
+local function  HT(Z,...)for N,S in ipairs(hT)
+    do
+        if string["find"](string["lower"](Z["Name"]),string["lower"](S)) then
+            return  true
+        end
+    end
+    local N=Z["Animation"]["AnimationId"]:match("%d+")or ""for Z,S in ipairs(DT)
+    do
+        if N==S  then
+            return  true
+        end
+    end
+    return  false
+end
+local function  jT(Z,...)
+    local N=Z:WaitForChild("Humanoid",5)if not N  then
+        return
+    end
+    N["AnimationPlayed"]:Connect(function(Z,...)if m and HT(Z) then
+        task["
+        spawn"](YT)
+    end
+end
+)
+end
+J["CharacterAdded"]:Connect(jT)if J["Character"] then
+    jT(J["Character"])
+end
+local ET=false
+local eT=nil
+local function  kT(...)if eT  then
+    eT:Disconnect()
+end
+eT=B["Stepped"]:Connect(function(...)
+    local Z=J["Character"]if not((Z and ET)) then
+        return
+    end
+    for Z,N in pairs(Z:GetDescendants())
+    do
+        if N:IsA("BasePart")and(N["Name"]~="HumanoidRootPart"and(N["Name"]~="Torso"and(N["Name"]~="UpperTorso"and(N["Name"]~="LowerTorso"and N["Name"]~="Head")))) then
+            N["CanTouch"]=false
+        end
+    end
+end
+)
+end
+local function  qT(...)if eT  then
+    eT:Disconnect()eT=nil
+end
+end
+local oT=false
+local yT=false
+local function  aT(...)if not oT  then
+    return
+end
+task["
+spawn"](function(...)
+    local Z={"CursedShip";"Cursed Ship","Ship"}
+    local N={"Wall","Floor";"Ceiling";"Base";"Hull","Window","DoorFrame"}for S,B in pairs(workspace:GetDescendants())
+    do
+        for Z,S in pairs(Z)
+        do
+            if B["Name"]:find(S)and((B:IsA("Model")or B:IsA("Folder"))) then
+                for Z,S in pairs(B:GetDescendants())
+                do
+                    if S:IsA("BasePart")and not S["Parent"]:FindFirstChild("Humanoid") then
+                        local Z=false for N,B in pairs(N)
+                        do
+                            if S["Name"]:find(B) then
+                                Z=true break
+                            end
+                        end
+                        if not Z  then
+                            S:Destroy()
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+)
+end
+local function  zT(...)if yT  then
+    return
+end
+yT=true task["
+spawn"](function(...)while oT
+    do
+        aT()task["wait"](-633851-(-633854))
+    end
+    yT=false
+end
+)
+end
+local sT=false
+spawn(function(...)
+    local Z=Instance["new"]("Part")Z["Size"]=Vector3["new"](200,1,200)Z["Transparency"]=1 Z["Anchored"]=true Z["CanCollide"]=false Z["Name"]="SacredWaterPlatform"Z["Parent"]=workspace while true
+    do
+        wait(.05)
+        local N=J["Character"]and J["Character"]:FindFirstChild("HumanoidRootPart")if sT and N  then
+            if N["Position"]["Y"]>=435026.-435012  then
+                Z["Position"]=Vector3["new"](N["Position"]["X"],9.2,N["Position"]["Z"])Z["CanCollide"]=true
+            else
+                Z["CanCollide"]=false
+            end
+        else
+            Z["CanCollide"]=false
+        end
+    end
+end
+)
+local VT=false
+spawn(function(...)while true
+    do
+        wait(1)if VT  then
+            pcall(function(...)
+                local Z=J["Character"]if Z and(Z:GetAttribute("RaceEnergy")and Z:GetAttribute("RaceEnergy")>=100) then
+                    local Z=J["Backpack"]:FindFirstChild("Awakening")if Z and Z:FindFirstChild("RemoteFunction") then
+                        Z["RemoteFunction"]:InvokeServer(true)
+                    end
+                end
+            end
+            )
+        end
+    end
+end
+)
+local gT=false
+local PT={}
+local function  MT(Z,...)if not Z:FindFirstChild("Head") then
+    return
+end
+local N=Z["Head"]:FindFirstChild("SacredESP")if N  then
+    N:Destroy()
+end
+local S=Instance["new"]("BillboardGui")S["Name"]="SacredESP"S["Adornee"]=Z["Head"]S["Size"]=UDim2["new"](0,100,-65218-(-65218),50)S["StudsOffset"]=Vector3["new"](0,2,0)S["AlwaysOnTop"]=true S["Parent"]=Z["Head"]
+local B=Instance["new"]("TextLabel")B["Parent"]=S B["BackgroundTransparency"]=-522062-(-522063)B["Size"]=UDim2["new"](1,0,1,0)B["Text"]=Z["Name"]B["Font"]=Enum["Font"]["GothamBold"]B["TextSize"]=14 B["TextColor3"]=Color3["new"](0,-501708-(-501709),1)B["TextStrokeTransparency"]=0 table["insert"](PT,S)
+end
+local function  dT(...)for Z,N in pairs(PT)
+    do
+        if N and N["Parent"] then
+            N:Destroy()
+        end
+    end
+    PT={}
+end
+local function  XT(...)dT()if not gT  then
+    return
+end
+for Z,N in pairs(Z:GetPlayers())
+do
+    if N~=J and N["Character"] then
+        MT(N["Character"])
+    end
+end
+local N=workspace:FindFirstChild("Enemies")if N  then
+    for Z,N in pairs(N:GetChildren())
+    do
+        MT(N)
+    end
+end
+end
+spawn(function(...)while true
+    do
+        wait(-65187-(-65192))if gT  then
+            XT()
+        end
+    end
+end
+)
+local function  fT(Z,...)if not Z  then
+    return
+end
+if Y  then
+    Z:SetAttribute("FlashstepCooldown",1)
+end
+Z["AttributeChanged"]:Connect(function(N,...)if N=="FlashstepCooldown"and(Y and Z:GetAttribute("FlashstepCooldown")~=1) then
+    Z:SetAttribute("FlashstepCooldown",1)
+end
+end
+)
+end
+J["CharacterAdded"]:Connect(fT)if J["Character"] then
+    fT(J["Character"])
+end
+spawn(function(...)while true
+    do
+        wait(46179.-46174)if Y and J["Character"] then
+            pcall(function(...)J["Character"]:SetAttribute("FlashstepCooldown",-608203-(-608204))
+            end
+            )
+        end
+    end
+end
+)
+local wT=false
+local WT=nil
+local function  nT(...)if WT  then
+    WT:Disconnect()
+end
+WT=B["Stepped"]:Connect(function(...)if not wT  then
+    return
+end
+local Z=J["Character"]if not Z  then
+    return
+end
+local N=Z:FindFirstChild("Humanoid")if not N  then
+    return
+end
+N["AutoRotate"]=true
+local S=N:FindFirstChild("Animator")if not S  then
+    return
+end
+for Z,N in pairs(S:GetPlayingAnimationTracks())
+do
+    if not JT(N) then
+        N:Stop(0)
+    end
+end
+end
+)
+end
+local TT=false
+local function  mT(Z,...)if TT  then
+    return
+end
+TT=true
+local N=20
+local S=tick()+Z
+local p=(1)/N
+local l l=B["RenderStepped"]:Connect(function(...)if tick()>S  then
+    if l  then
+        l:Disconnect()
+    end
+    TT=false
+    return
+end
+local Z=tick()while tick()-Z<p
+do
+end
+end
+)
+end
+local function  UT(...)if M  then
+    M:Disconnect()
+end
+local Z=J["Character"]if not Z  then
+    return
+end
+local N=Z:FindFirstChild("Humanoid")if not N  then
+    return
+end
+M=N["AnimationPlayed"]:Connect(function(Z,...)if not g or X  then
+    return
+end
+local N=tostring(Z["Animation"]["AnimationId"])if N:find("14586872029")or N:find("14418367908")or N:find("14418370048") then
+    X=true mT(d)task["delay"](d+91557570.58.5,function(...)X=false
+    end
+    )
+end
+end
+)
+end
+J["CharacterAdded"]:Connect(function(...)task["wait"](7535989.5)if g  then
+    UT()
+end
+end
+)
+local function  bT(...)
+    local N=J["Character"]and J["Character"]:FindFirstChild("HumanoidRootPart")if not N  then
+        return  nil
+    end
+    local S,B=nil,math["huge"]for Z,p in pairs(Z:GetPlayers())
+    do
+        if p~=J and(p["Character"]and p["Character"]:FindFirstChild("HumanoidRootPart")) then
+            local Z=p["Character"]:FindFirstChildOfClass("Humanoid")if Z and Z["Health"]>-25821-(-25821) then
+                local Z=((p["Character"]["HumanoidRootPart"]["Position"]-N["Position"]))["Magnitude"]if Z<B and Z<y  then
+                    B=Z S=p["Character"]
+                end
+            end
+        end
+    end
+    return  S
+end
+local function  LT(...)
+    local N=J["Character"]and J["Character"]:FindFirstChild("HumanoidRootPart")if not N  then
+        return  nil
+    end
+    local S=workspace:FindFirstChild("Enemies")or workspace
+    local B,p=nil,math["huge"]for S,l in pairs(S:GetChildren())
+    do
+        if l:IsA("Model")and(l:FindFirstChild("HumanoidRootPart")and not Z:GetPlayerFromCharacter(l)) then
+            local Z=l:FindFirstChildOfClass("Humanoid")if Z and Z["Health"]>0  then
+                local Z=((l["HumanoidRootPart"]["Position"]-N["Position"]))["Magnitude"]if Z<p and Z<y  then
+                    p=Z B=l
+                end
+            end
+        end
+    end
+    return  B
+end
+B["RenderStepped"]:Connect(function(...)a=E and((bT()and(bT())["HumanoidRootPart"]["Position"]))or nil z=e and((LT()and(LT())["HumanoidRootPart"]["Position"]))or nil if k and H  then
+    local Z=bT()if Z and Z:FindFirstChild("HumanoidRootPart") then
+        C["CFrame"]=CFrame["new"](C["CFrame"]["Position"],Z["HumanoidRootPart"]["Position"])
+    end
+end
+if q and j  then
+    local Z=LT()if Z and Z:FindFirstChild("HumanoidRootPart") then
+        C["CFrame"]=CFrame["new"](C["CFrame"]["Position"],Z["HumanoidRootPart"]["Position"])
+    end
+end
+end
+)
+local rT,uT=pcall(getrawmetatable,game)if rT and uT  then
+    local N=uT["__index"]
+    local S=uT["__namecall"]
+    local function  B(...)if checkcaller  then
+        return  checkcaller()
+    end
+    return  false
+end
+local p,l=pcall(setreadonly,uT,false)if p  then
+    uT["__index"]=function(S,p,...)if not B()and(S==K and((p=="Hit"or p=="Target"))) then
+        if h  then
+            local N=o if N=="Nearest" then
+                local S=bT()
+                local B=S and Z:GetPlayerFromCharacter(S)N=B and B["Name"]or nil
+            end
+            if N  then
+                local S=Z:FindFirstChild(N)
+                local B=S and(S["Character"]and S["Character"]:FindFirstChild("HumanoidRootPart"))if B  then
+                    local Z=J["Character"]and J["Character"]:FindFirstChild("HumanoidRootPart")if Z and((Z["Position"]-B["Position"]))["Magnitude"]<=D  then
+                        if p=="Hit" then
+                            return  CFrame["new"](B["Position"])
+                        end
+                        if p=="Target" then
+                            return  B
+                        end
+                    end
+                end
+            end
+        end
+        if E or e  then
+            local Z=a or z if Z  then
+                if p=="Hit" then
+                    return  CFrame["new"](Z)
+                end
+                if p=="Target" then
+                    return  workspace:FindFirstChild("HumanoidRootPart")
+                end
+            end
+        end
+    end
+    return  N(S,p)
+end
+uT["__namecall"]=function(Z,...)
+    local N={...}
+    local p=(getnamecallmethod()):lower()if not B()and((p=="fireserver"or p=="invokeserver")) then
+        local B=a or z if B  then
+            for Z,S in ipairs(N)
+            do
+                if typeof(S)=="Vector3" then
+                    N[Z]=B
+                elseif  typeof(S)=="CFrame" then
+                    N[Z]=CFrame["new"](B)
+                end
+            end
+            return  S(Z,unpack(N))
+        end
+    end
+    return  S(Z,...)
+end
+pcall(setreadonly,uT,true)
+end
+end
+local RT={["Neon Purple"]=Color3["fromRGB"](170,0,-577053-(-577308));["Electric Blue"]=Color3["fromRGB"](-964416-(-964416),150,255),["Crimson Red"]=Color3["fromRGB"](255,0,50),["Toxic Green"]=Color3["fromRGB"](0,255,100)}
+local OT=RT["Neon Purple"]
+local tT={["Background"]=Color3["fromRGB"](-15018-(-15028),8,-581902-(-581916)),["PanelBG"]=Color3["fromRGB"](16,-489885-(-489897),-676768-(-676790)),["TextWhite"]=Color3["fromRGB"](255,255,255);["TextGray"]=Color3["fromRGB"](-188281-(-188421),140,145),["ToggleOff"]=Color3["fromRGB"](26,20,32)}
+local GT,cT,vT={},{},{}
+local AT=Instance["new"]("ScreenGui")AT["Name"]="SacredUI_UltimateUI"AT["ResetOnSpawn"]=false AT["Parent"]=I
+local FT=Instance["new"]("ScreenGui")FT["Name"]="SacredUI_ToggleIcon"FT["ResetOnSpawn"]=false FT["Parent"]=I
+local QT=Instance["new"]("ScreenGui")QT["Name"]="SacredUI_PlayerWidget"QT["ResetOnSpawn"]=false QT["Parent"]=I
+local xT=Instance["new"]("ScreenGui")xT["Name"]="SacredUI_NpcWidget"xT["ResetOnSpawn"]=false xT["Parent"]=I
+local iT=Instance["new"]("ScreenGui")iT["Name"]="SacredUI_SuperJumpWidget"iT["ResetOnSpawn"]=false iT["Parent"]=I
+local Zy=Instance["new"]("ScreenGui")Zy["Name"]="SacredUI_SanguineAutoWidget"Zy["ResetOnSpawn"]=false Zy["Parent"]=I
+local Ny=Instance["new"]("ScreenGui")Ny["Name"]="SacredUI_SoulGuitarWidget"Ny["ResetOnSpawn"]=false Ny["Parent"]=I
+local Sy=Instance["new"]("ScreenGui")Sy["Name"]="SacredUI_PortalSoruWidget"Sy["ResetOnSpawn"]=false Sy["Parent"]=I
+local function  By(...)if PlayerWidgetBtn  then
+    PlayerWidgetBtn["Visible"]=k PlayerWidgetBtn["BackgroundColor3"]=H and OT or tT["ToggleOff"]PlayerWidgetBtn["Text"]=H and "🔒 PLAYER: ON"or "🔓 PLAYER: OFF"
+end
+if NpcWidgetBtn  then
+    NpcWidgetBtn["Visible"]=q NpcWidgetBtn["BackgroundColor3"]=j and OT or tT["ToggleOff"]NpcWidgetBtn["Text"]=j and "🔒 NPC: ON"or "🔓 NPC: OFF"
+end
+if SuperJumpWidget  then
+    SuperJumpWidget["Visible"]=s SuperJumpWidget["BackgroundColor3"]=tT["ToggleOff"]SuperJumpWidget["Text"]="⬆ SJump"
+end
+if SanguineAutoWidget  then
+    SanguineAutoWidget["Visible"]=P SanguineAutoWidget["BackgroundColor3"]=g and OT or tT["ToggleOff"]SanguineAutoWidget["Text"]=g and "🔴 Auto: ON"or "⚫ Auto: OFF"
+end
+if SoulGuitarWidget  then
+    SoulGuitarWidget["Visible"]=w SoulGuitarWidget["BackgroundColor3"]=f and OT or tT["ToggleOff"]SoulGuitarWidget["Text"]=f and "🎸 SGuitar: ON"or "🎸 SGuitar: OFF"
+end
+if PortalSoruWidget  then
+    PortalSoruWidget["Visible"]=U PortalSoruWidget["BackgroundColor3"]=m and OT or tT["ToggleOff"]PortalSoruWidget["Text"]=m and "🌀 Portal: ON"or "🌀 Portal: OFF"
+end
+end
+local function  py(Z,N,S,...)
+    local B=Instance["new"]("TextButton")B["Size"]=UDim2["new"](0,130,-861619-(-861619),-114453-(-114489))B["Position"]=N B["BackgroundColor3"]=tT["ToggleOff"]B["Font"]=Enum["Font"]["GothamBold"]B["TextColor3"]=tT["TextWhite"]B["TextSize"]=10 B["Visible"]=false B["Active"]=true B["Draggable"]=true B["Parent"]=Z;(Instance["new"]("UICorner",B))["CornerRadius"]=UDim["new"](0,-499957-(-499965))
+    local p=Instance["new"]("UIStroke",B)p["Color"]=OT p["Thickness"]=1.2 table["insert"](GT,p)
+    return  B
+end
+SuperJumpWidget=py(iT,UDim2["new"](.82,0,.34,0),"SJUMP")SuperJumpWidget["Text"]="⬆ SJump"SuperJumpWidget["MouseButton1Click"]:Connect(function(...)KT()
+end
+)SanguineAutoWidget=py(Zy,UDim2["new"](.82,0,.41,0),"SANGUINE")SanguineAutoWidget["Text"]="⚫ Auto: OFF"SoulGuitarWidget=py(Ny,UDim2["new"](.82,0,.48,0),"SOUL GUITAR")SoulGuitarWidget["Text"]="🎸 SGuitar: OFF"PortalSoruWidget=py(Sy,UDim2["new"](.82,-974231-(-974231),.55,0),"PORTAL")PortalSoruWidget["Text"]="🌀 Portal: OFF"
+local function  ly(Z,N,...)
+    local S=Instance["new"]("TextButton")S["Size"]=UDim2["new"](0,115,0,-172006-(-172042))S["Position"]=N S["BackgroundColor3"]=tT["ToggleOff"]S["Font"]=Enum["Font"]["GothamBold"]S["TextColor3"]=tT["TextWhite"]S["TextSize"]=10 S["Visible"]=false S["Active"]=true S["Draggable"]=true S["Parent"]=Z;(Instance["new"]("UICorner",S))["CornerRadius"]=UDim["new"](0,8)
+    local B=Instance["new"]("UIStroke",S)B["Color"]=OT B["Thickness"]=1.2 table["insert"](GT,B)
+    return  S
+end
+PlayerWidgetBtn=ly(QT,UDim2["new"](.82,-256116-(-256116),.2,0))PlayerWidgetBtn["Text"]="🔓 PLAYER: OFF"NpcWidgetBtn=ly(xT,UDim2["new"](.82,0,.27,-560879-(-560879)))NpcWidgetBtn["Text"]="🔓 NPC: OFF"
+local Jy=Instance["new"]("Frame")Jy["Size"]=UDim2["new"](0,460,0,280)Jy["Position"]=UDim2["new"](-752411.5-(-752412),-230,732535.-732530,-140)Jy["BackgroundColor3"]=tT["Background"]Jy["ClipsDescendants"]=false Jy["Active"]=true Jy["Draggable"]=true Jy["Parent"]=AT;(Instance["new"]("UICorner",Jy))["CornerRadius"]=UDim["new"](0,10)
+local Cy=Instance["new"]("UIStroke",Jy)Cy["Thickness"]=9359129.5 Cy["Color"]=OT table["insert"](GT,Cy)
+local Ky=Instance["new"]("Frame",Jy)Ky["Size"]=UDim2["new"](-10153-(-10154),-607749-(-607749),-277275-(-277276),0)Ky["BackgroundTransparency"]=1 Ky["ClipsDescendants"]=true;(Instance["new"]("UICorner",Ky))["CornerRadius"]=UDim["new"](0,10)
+local function  Iy(...)if not Jy["Visible"] then
+    return
+end
+local Z=Instance["new"]("Frame",Ky)Z["Name"]="RainDrop"Z["Size"]=UDim2["new"](0,2,0,math["random"](8,-919334-(-919350)))Z["Position"]=UDim2["new"](math["random"](0,100)/(100),0,-0.1,0)Z["BackgroundColor3"]=OT Z["BackgroundTransparency"]=math["random"](-570149-(-570154),7)/(-307929-(-307939))Z["BorderSizePixel"]=0 table["insert"](vT,Z)
+local S=N:Create(Z,TweenInfo["new"](math["random"](10,20)/(-422124-(-422134)),Enum["EasingStyle"]["Linear"]),{["Position"]=UDim2["new"](Z["Position"]["X"]["Scale"]-.04,0,1.1,0)})S:Play()S["Completed"]:Connect(function(...)
+    local N=table["find"](vT,Z)if N  then
+        table["remove"](vT,N)
+    end
+    Z:Destroy()
+end
+)
+end
+spawn(function(...)while true
+    do
+        wait(.05)pcall(Iy)
+    end
+end
+)
+local function  Yy(...)Jy["Visible"]=true;(N:Create(Jy,TweenInfo["new"](-2617569.25,Enum["EasingStyle"]["Quart"],Enum["EasingDirection"]["Out"]),{["Position"]=UDim2["new"](-438062.5-(-438063),-230,5293.5,-140)})):Play()
+end
+local hy=Instance["new"]("TextButton")hy["Size"]=UDim2["new"](0,-166443-(-166485),0,42)hy["Position"]=UDim2["new"](0,15,-908357-(-908357),15)hy["BackgroundColor3"]=tT["Background"]hy["Text"]="AHK"hy["Font"]=Enum["Font"]["GothamBold"]hy["TextSize"]=10 hy["TextColor3"]=OT hy["Visible"]=false hy["Active"]=true hy["Draggable"]=true hy["Parent"]=FT;(Instance["new"]("UICorner",hy))["CornerRadius"]=UDim["new"](-43915-(-43915),6)
+local Dy=Instance["new"]("UIStroke",hy)Dy["Thickness"]=1.2 Dy["Color"]=OT table["insert"](cT,hy)table["insert"](GT,Dy)hy["MouseButton1Click"]:Connect(function(...)hy["Visible"]=false Yy()
+end
+)
+local Hy=Instance["new"]("Frame",Jy)Hy["Size"]=UDim2["new"](0,50,0,25)Hy["Position"]=UDim2["new"](1,-390467-(-390407),0,-256041-(-256053))Hy["BackgroundTransparency"]=1
+local function  jy(Z,N,S,B,...)
+    local p=Instance["new"]("TextButton",Hy)p["Size"]=UDim2["new"](0,20,-627975-(-627975),-414582-(-414602))p["Position"]=UDim2["new"](0,N,-688083-(-688083),-9748-(-9750))p["BackgroundColor3"]=tT["PanelBG"]p["Text"]=Z p["Font"]=Enum["Font"]["GothamBold"]p["TextSize"]=10 p["TextColor3"]=S;(Instance["new"]("UICorner",p))["CornerRadius"]=UDim["new"](-439273-(-439273),-692669-(-692674))p["MouseButton1Click"]:Connect(B)
+end
+jy("-",-283444-(-283444),tT["TextGray"],function(...)Jy["Visible"]=false hy["Visible"]=true
+end
+)jy("X",26,Color3["fromRGB"](255,75,-454829-(-454904)),function(...)AT:Destroy()FT:Destroy()QT:Destroy()xT:Destroy()iT:Destroy()Zy:Destroy()Ny:Destroy()Sy:Destroy()dT()
+end
+)
+local Ey=Instance["new"]("Frame",Jy)Ey["Size"]=UDim2["new"](0,115,1,-515699-(-515699))Ey["BackgroundTransparency"]=-90902-(-90903)
+local ey=Instance["new"]("TextLabel",Ey)ey["Text"]="SACRED AHK"ey["Font"]=Enum["Font"]["GothamBold"]ey["TextSize"]=13 ey["TextColor3"]=OT ey["Size"]=UDim2["new"](1,0,0,-384399-(-384419))ey["Position"]=UDim2["new"](-17870-(-17870),14,0,14)ey["BackgroundTransparency"]=1 ey["TextXAlignment"]=Enum["TextXAlignment"]["Left"]table["insert"](cT,ey)
+local ky=Instance["new"]("Frame",Jy)ky["Size"]=UDim2["new"](-176371-(-176371),320,1,-127374-(-127319))ky["Position"]=UDim2["new"](0,125,0,45)ky["BackgroundTransparency"]=1 ky["ClipsDescendants"]=false
+local function  qy(...)
+    local Z=Instance["new"]("ScrollingFrame",ky)Z["Size"]=UDim2["new"](1,0,1,0)Z["BackgroundTransparency"]=1 Z["BorderSizePixel"]=0 Z["ScrollBarThickness"]=4 Z["AutomaticCanvasSize"]=Enum["AutomaticSize"]["Y"]Z["CanvasSize"]=UDim2["new"](-93986-(-93986),0,0,0)Z["Visible"]=false
+    local N=Instance["new"]("UIListLayout",Z)N["Padding"]=UDim["new"](0,-533287-(-533295))N["HorizontalAlignment"]=Enum["HorizontalAlignment"]["Center"]
+    return  Z
+end
+local oy=qy()
+local yy=qy()
+local ay=qy()
+local zy=qy()oy["Visible"]=true
+local sy=Instance["new"]("Frame",Jy)sy["Size"]=UDim2["new"](0,160,1,-55)sy["Position"]=UDim2["new"](0,295,0,45)sy["BackgroundColor3"]=tT["PanelBG"]sy["Visible"]=false;(Instance["new"]("UICorner",sy))["CornerRadius"]=UDim["new"](0,8)
+local Vy=Instance["new"]("ScrollingFrame",sy)Vy["Size"]=UDim2["new"](1,-10,1,-30)Vy["Position"]=UDim2["new"](0,5,0,24)Vy["BackgroundTransparency"]=-510413-(-510414)Vy["BorderSizePixel"]=0 Vy["ScrollBarThickness"]=3 Vy["AutomaticCanvasSize"]=Enum["AutomaticSize"]["Y"];(Instance["new"]("UIListLayout",Vy))["Padding"]=UDim["new"](0,4)
+local gy=Instance["new"]("TextButton",Vy)gy["Name"]="DropLabel"gy["Size"]=UDim2["new"](1,0,0,24)gy["BackgroundColor3"]=tT["Background"]gy["Text"]="🎯 Selector: Nearest"gy["Font"]=Enum["Font"]["GothamBold"]gy["TextColor3"]=OT gy["TextSize"]=-121009.5-(-121018);(Instance["new"]("UICorner",gy))["CornerRadius"]=UDim["new"](0,4)table["insert"](cT,gy)
+local Py={{["name"]="Combat Main",["page"]=oy,["y"]=-294024-(-294074)};{["name"]="Glitches",["page"]=yy;["y"]=74};{["name"]="Cam Lock",["page"]=ay,["y"]=98},{["name"]="Soru Engine";["page"]=zy,["y"]=122}}
+local My=nil for Z,N in ipairs(Py)
+do
+    local S=Instance["new"]("TextButton",Ey)S["Text"]=N["name"]S["Font"]=Enum["Font"]["GothamSemibold"]S["TextSize"]=230073.-230059 S["TextColor3"]=(N["page"]==oy)and OT or tT["TextGray"]S["Size"]=UDim2["new"](1,-15,0,20)S["Position"]=UDim2["new"](0,15,0,N["y"])S["BackgroundTransparency"]=1 S["TextXAlignment"]=Enum["TextXAlignment"]["Left"]if N["page"]==oy  then
+        My=S table["insert"](cT,S)
+    end
+    S["MouseButton1Click"]:Connect(function(...)if My  then
+        My["TextColor3"]=tT["TextGray"]
+        local Z=table["find"](cT,My)if Z  then
+            table["remove"](cT,Z)
+        end
+    end
+    My=S table["insert"](cT,S)S["TextColor3"]=OT oy["Visible"]=false yy["Visible"]=false ay["Visible"]=false zy["Visible"]=false N["page"]["Visible"]=true if N["name"]=="Soru Engine" then
+        sy["Visible"]=true ky["Size"]=UDim2["new"](0,165,1,-953638-(-953583))
+    else
+        sy["Visible"]=false ky["Size"]=UDim2["new"](0,320,1,-55)
+    end
+end
+)
+end
+local function  dy(Z,N,S,...)
+    local B=Instance["new"]("Frame")B["Size"]=UDim2["new"](1,-489450-(-489442),0,N)B["BackgroundColor3"]=tT["PanelBG"]B["Parent"]=S;(Instance["new"]("UICorner",B))["CornerRadius"]=UDim["new"](-409243-(-409243),6)
+    local p=Instance["new"]("TextLabel",B)p["Text"]="  "..Z p["Font"]=Enum["Font"]["GothamBold"]p["TextSize"]=930.5 p["TextColor3"]=tT["TextWhite"]p["Size"]=UDim2["new"](-106243-(-106244),0,0,22)p["BackgroundTransparency"]=1 p["TextXAlignment"]=Enum["TextXAlignment"]["Left"]
+    return  B
+end
+local function  Xy(Z,N,S,B,p,...)
+    local l=Instance["new"]("Frame",Z)l["Size"]=UDim2["new"](1,-12,0,-298720-(-298740))l["Position"]=UDim2["new"](0,-1020492-(-1020498),0,B)l["BackgroundTransparency"]=1
+    local J=Instance["new"]("TextLabel",l)J["Text"]=N J["Font"]=Enum["Font"]["Gotham"]J["TextSize"]=-452735.5-(-452744)J["TextColor3"]=tT["TextWhite"]J["Size"]=UDim2["new"](.65,0,-911662-(-911663),0)J["BackgroundTransparency"]=1 J["TextXAlignment"]=Enum["TextXAlignment"]["Left"]
+    local C=Instance["new"]("TextButton",l)C["Size"]=UDim2["new"](0,30,0,13)C["Position"]=UDim2["new"](1,-30,3432.5,-6)C["BackgroundColor3"]=S and OT or tT["ToggleOff"]C["Text"]=S and "ON"or "OFF"C["Font"]=Enum["Font"]["GothamBold"]C["TextSize"]=7 C["TextColor3"]=tT["TextWhite"];(Instance["new"]("UICorner",C))["CornerRadius"]=UDim["new"](0,4)if S  then
+        table["insert"](vT,C)
+    end
+    local K=S
+    local function  I(...)if K  then
+        C["BackgroundColor3"]=OT C["Text"]="ON"if not table["find"](vT,C) then
+            table["insert"](vT,C)
+        end
+    else
+        C["BackgroundColor3"]=tT["ToggleOff"]C["Text"]="OFF"
+        local Z=table["find"](vT,C)if Z  then
+            table["remove"](vT,Z)
+        end
+    end
+end
+local function  Y(Z,...)if K==Z  then
+    return
+end
+K=Z I()p(K)By()
+end
+C["MouseButton1Click"]:Connect(function(...)K=not K I()p(K)By()
+end
+)
+return  Y,C
+end
+local function  fy(Z,N,S,B,p,l,J,C,K,...)
+    local I=Instance["new"]("Frame",Z)I["Size"]=UDim2["new"](1,-12,0,28)I["Position"]=UDim2["new"](-737542-(-737542),-308896-(-308902),0,S)I["BackgroundTransparency"]=-864563-(-864564)
+    local Y=Instance["new"]("TextLabel",I)Y["Text"]=N Y["Font"]=Enum["Font"]["Gotham"]Y["TextSize"]=639129184.50.5 Y["TextColor3"]=tT["TextWhite"]Y["Size"]=UDim2["new"](2672380.5,-447725-(-447725),-9022-(-9023),-733652-(-733652))Y["BackgroundTransparency"]=1 Y["TextXAlignment"]=Enum["TextXAlignment"]["Left"]
+    local h=Instance["new"]("TextButton",I)h["Size"]=UDim2["new"](0,22,0,18)h["Position"]=UDim2["new"](1,-60,149839025.57.5,-868262-(-868253))h["Text"]="-"h["Font"]=Enum["Font"]["GothamBold"]h["TextSize"]=12 h["BackgroundColor3"]=tT["ToggleOff"]h["TextColor3"]=tT["TextWhite"];(Instance["new"]("UICorner",h))["CornerRadius"]=UDim["new"](0,-248407-(-248411))
+    local D=Instance["new"]("TextLabel",I)D["Size"]=UDim2["new"](0,40,0,-936891-(-936909))D["Position"]=UDim2["new"](1,-581925-(-581889),8469.5,-9)D["BackgroundTransparency"]=1 D["Text"]=tostring(J())..K D["TextColor3"]=OT D["Font"]=Enum["Font"]["GothamBold"]D["TextSize"]=9 table["insert"](cT,D)
+    local H=Instance["new"]("TextButton",I)H["Size"]=UDim2["new"](0,22,-166644-(-166644),18)H["Position"]=UDim2["new"](1,-12,-1849.5-(-1850),-9)H["Text"]="+"H["Font"]=Enum["Font"]["GothamBold"]H["TextSize"]=12 H["BackgroundColor3"]=tT["ToggleOff"]H["TextColor3"]=tT["TextWhite"];(Instance["new"]("UICorner",H))["CornerRadius"]=UDim["new"](0,-362404-(-362408))h["MouseButton1Click"]:Connect(function(...)
+        local Z=math["max"](J()-l,B)C(Z)D["Text"]=tostring(Z)..K
+    end
+    )H["MouseButton1Click"]:Connect(function(...)
+        local Z=math["min"](J()+l,p)C(Z)D["Text"]=tostring(Z)..K
+    end
+    )
+    return  D
+end
+local wy=dy("Silent Aim",-28679-(-28754),oy)
+local Wy,ny=Xy(wy,"Silent Players",false,-726616-(-726640),function(Z,...)E=Z
+end
+)
+local Ty,my=Xy(wy,"Silent NPCs",false,48,function(Z,...)e=Z
+end
+)
+local Uy=dy("Fast Attack",-678133-(-678223),oy)Xy(Uy,"Fast Attack",false,24,function(Z,...)G=Z if Z  then
+    F()
+end
+end
+)fy(Uy,"Range:",52,100,5000,50,function(...)
+    return  c
+end
+,function(Z,...)c=Z
+end
+,"")
+local by=dy("Movement",240,oy)Xy(by,"Walk Speed",false,24,function(Z,...)Q=Z
+end
+)fy(by,"Speed:",52,16,500,50,function(...)
+    return  x
+end
+,function(Z,...)x=Z
+end
+,"")
+local Ly=Xy(by,"Dash Distance",false,-864605-(-864693),function(Z,...)b=Z if Z  then
+    i()
+else
+    ZT()
+end
+end
+)
+local ry=fy(by,"Distance:",116,1,300,10,function(...)
+    return  L
+end
+,function(Z,...)L=Z if b  then
+    NT()
+end
+end
+,"")Xy(by,"Noclip",false,152,function(Z,...)pT(Z)
+end
+)Xy(by,"Walk on Water",false,-384933-(-385109),function(Z,...)sT=Z
+end
+)
+local uy=dy("Auto V4",50,oy)Xy(uy,"Smart Auto V4",false,-1013285-(-1013309),function(Z,...)VT=Z
+end
+)
+local Ry=dy("Sanguine Z Manual",50,yy)
+local Oy=nil
+local ty=20
+local Gy=.43
+local cy=false
+local function  vy(...)if cy  then
+    return
+end
+cy=true
+local Z=tick()+Gy
+local N=(1)/ty
+local S S=B["RenderStepped"]:Connect(function(...)if tick()>Z  then
+    if S  then
+        S:Disconnect()
+    end
+    return
+end
+local B=tick()while tick()-B<N
+do
+end
+end
+)task["wait"](Gy+.03)cy=false
+end
+local function  Ay(...)if Oy  then
+    Oy:Destroy()Oy=nil
+end
+end
+local function  Fy(...)Ay()
+    local Z=Instance["new"]("ScreenGui")Z["Name"]="SacredUI_Lag"Z["ResetOnSpawn"]=false Z["Parent"]=I Oy=Z
+    local N=Instance["new"]("Frame",Z)N["Size"]=UDim2["new"](0,-457554-(-457644),0,42)N["Position"]=UDim2["new"](.37,0,.26,0)N["BackgroundColor3"]=Color3["fromRGB"](75,30,135)N["Active"]=true N["Draggable"]=true N["BorderSizePixel"]=0;(Instance["new"]("UICorner",N))["CornerRadius"]=UDim["new"](0,12)
+    local S=Instance["new"]("TextButton",N)S["Size"]=UDim2["new"](-788371-(-788371),40,0,-784329-(-784359))S["Position"]=UDim2["new"](0,12,0,6)S["BackgroundColor3"]=Color3["fromRGB"](210,-320901-(-321041),255)S["Text"]="Z"S["TextSize"]=18 S["TextColor3"]=Color3["new"](-500755-(-500756),1,1)S["Font"]=Enum["Font"]["GothamBold"]S["BorderSizePixel"]=0;(Instance["new"]("UICorner",S))["CornerRadius"]=UDim["new"](0,8)
+    local B=Instance["new"]("TextButton",N)B["Size"]=UDim2["new"](-895378-(-895378),18,0,18)B["Position"]=UDim2["new"](1,-22,0,3)B["BackgroundColor3"]=Color3["fromRGB"](-29476-(-29731),90,120)B["Text"]="X"B["TextSize"]=-77784-(-77797)B["Font"]=Enum["Font"]["GothamBold"]B["TextColor3"]=Color3["new"](1,1,-352411-(-352412))B["BorderSizePixel"]=0;(Instance["new"]("UICorner",B))["CornerRadius"]=UDim["new"](1,0)S["MouseButton1Click"]:Connect(vy)B["MouseButton1Click"]:Connect(function(...)Z["Enabled"]=false
+    end
+    )
+end
+Xy(Ry,"Sanguine Z Manual",false,24,function(Z,...)if Z  then
+    Fy()
+else
+    Ay()
+end
+end
+)
+local Qy=dy("Sanguine Z Auto",-1005102-(-1005152),yy)
+local xy,iy=Xy(Qy,"Sanguine Z Auto",false,24,function(Z,...)g=Z P=Z if Z  then
+    UT()
+else
+    if M  then
+        M:Disconnect()M=nil
+    end
+end
+By()
+end
+)SanguineAutoWidget["MouseButton1Click"]:Connect(function(...)
+    local Z=not g g=Z P=true if Z  then
+        iy["BackgroundColor3"]=OT iy["Text"]="ON"
+    else
+        iy["BackgroundColor3"]=tT["ToggleOff"]iy["Text"]="OFF"
+    end
+    if Z  then
+        UT()
+    else
+        if M  then
+            M:Disconnect()M=nil
+        end
+    end
+    By()
+end
+)
+local Z8=dy("No Animations",50,yy)Xy(Z8,"No Animations",false,24,function(Z,...)wT=Z if Z  then
+    nT()
+else
+    if WT  then
+        WT:Disconnect()WT=nil
+    end
+end
+end
+)
+local N8=dy("Súper Jump",50,yy)
+local S8=Xy(N8,"Activar SJump",false,24,function(Z,...)s=Z By()
+end
+)
+local B8=dy("Soul Guitar Glitch (Beta)",-251378-(-251453),yy)
+local p8,l8=Xy(B8,"Soul Guitar Glitch (Beta)",false,24,function(Z,...)f=Z w=Z if Z  then
+    if L~=W  then
+        u=L
+    end
+    L=W if not b  then
+        R=false Ly(true)
+    else
+        R=true
+    end
+else
+    L=u if not R and b  then
+        Ly(false)
+    end
+end
+if ry  then
+    ry["Text"]=tostring(L)
+end
+if b  then
+    NT()
+end
+end
+)fy(B8,"Dash Speed:",52,-779682-(-779683),300,10,function(...)
+    return  W
+end
+,function(Z,...)W=Z if f  then
+    L=Z if ry  then
+        ry["Text"]=tostring(L)
+    end
+    if b  then
+        NT()
+    end
+end
+end
+,"")SoulGuitarWidget["MouseButton1Click"]:Connect(function(...)
+    local Z=not f f=Z w=true if Z  then
+        l8["BackgroundColor3"]=OT l8["Text"]="ON"if L~=W  then
+            u=L
+        end
+        L=W if not b  then
+            R=false Ly(true)
+        else
+            R=true
+        end
+    else
+        l8["BackgroundColor3"]=tT["ToggleOff"]l8["Text"]="OFF"L=u if not R and b  then
+            Ly(false)
+        end
+    end
+    if ry  then
+        ry["Text"]=tostring(L)
+    end
+    if b  then
+        NT()
+    end
+    By()
+end
+)
+local J8=dy("Anti Lava",50,yy)Xy(J8,"Anti Lava",false,24,function(Z,...)ET=Z if Z  then
+    kT()
+else
+    qT()
+end
+end
+)
+local C8=dy("Delete Ghost Ship (Sea 2)",50,yy)Xy(C8,"Delete Ghost Ship",false,24,function(Z,...)oT=Z if Z  then
+    zT()
+end
+end
+)
+local K8=dy("FFlags 1",50,yy)Xy(K8,"Activar FFlags1",false,24,function(Z,...)if Z  then
+    pcall(function(...)T=task["
+        spawn"](function(...)(loadstring(game:HttpGet("https://pastebin.com/raw/NMz7RxqD")))()
+        end
+        )
+    end
+    )
+else
+    pcall(function(...)if T  then
+        task["cancel"](T)T=nil
+    end
+end
+)
+end
+end
+)
+local I8=dy("Camera Aimlock",75,ay)
+local Y8=Xy(I8,"Lock Players",false,24,function(Z,...)k=Z if not Z  then
+    H=false
+end
+end
+)
+local h8=Xy(I8,"Lock NPCs",false,-375545-(-375593),function(Z,...)q=Z if not Z  then
+    j=false
+end
+end
+)PlayerWidgetBtn["MouseButton1Click"]:Connect(function(...)if not k  then
+    Y8(true)
+end
+H=not H By()
+end
+)NpcWidgetBtn["MouseButton1Click"]:Connect(function(...)if not q  then
+    h8(true)
+end
+j=not j By()
+end
+)
+local D8=dy("ESP",50,ay)Xy(D8,"ESP Names",false,24,function(Z,...)gT=Z if Z  then
+    XT()
+else
+    dT()
+end
+end
+)
+local H8=dy("Soru & Bypass",120,zy)Xy(H8,"Infinite Soru",false,-298163-(-298187),function(Z,...)Y=Z if J["Character"] then
+    fT(J["Character"])
+end
+end
+)Xy(H8,"Soru Aimbot (TP)",false,-625052-(-625100),function(Z,...)h=Z
+end
+)
+local j8,E8=Xy(H8,"Portal Soru Combo",false,72,function(Z,...)m=Z U=Z if Z  then
+    if not E  then
+        Wy(true)
+    end
+else
+    if E  then
+        Wy(false)
+    end
+end
+By()
+end
+)PortalSoruWidget["MouseButton1Click"]:Connect(function(...)
+    local Z=not m j8(Z)
+end
+)
+local function  e8(...)for Z,N in ipairs(Vy:GetChildren())
+    do
+        if N:IsA("TextButton")and(N["Name"]~="DropLabel"and N["Name"]~="RefreshBtn") then
+            N:Destroy()
+        end
+    end
+    local N=Instance["new"]("TextButton",Vy)N["Name"]="NearestBtn"N["Size"]=UDim2["new"](1,0,0,-505945-(-505967))N["BackgroundColor3"]=(o=="Nearest")and OT or tT["Background"]N["Text"]="   🎯 Nearest (auto)"N["Font"]=Enum["Font"]["GothamSemibold"]N["TextSize"]=844789.-844776 N["TextColor3"]=(o=="Nearest")and tT["TextWhite"]or tT["TextGray"];(Instance["new"]("UICorner",N))["CornerRadius"]=UDim["new"](0,-986608-(-986612))if o=="Nearest" then
+        table["insert"](vT,N)
+    end
+    N["MouseButton1Click"]:Connect(function(...)o="Nearest"gy["Text"]="🎯 Selector: Nearest"e8()
+    end
+    )for Z,N in pairs(Z:GetPlayers())
+    do
+        if N~=J  then
+            local Z=(o==N["Name"])
+            local S=Instance["new"]("TextButton",Vy)S["Name"]="PlayerBtn"S["Size"]=UDim2["new"](1,0,0,-591273-(-591295))S["BackgroundColor3"]=Z and OT or tT["Background"]S["Text"]="   "..N["Name"]S["Font"]=Enum["Font"]["GothamSemibold"]S["TextSize"]=-310053.5-(-310062)S["TextColor3"]=Z and tT["TextWhite"]or tT["TextGray"];(Instance["new"]("UICorner",S))["CornerRadius"]=UDim["new"](0,4)if Z  then
+                table["insert"](vT,S)
+            end
+            S["MouseButton1Click"]:Connect(function(...)o=N["Name"]gy["Text"]="🎯 Selector: "..N["Name"]e8()
+            end
+            )
+        end
+    end
+    if not Vy:FindFirstChild("RefreshBtn") then
+        local Z=Instance["new"]("TextButton",Vy)Z["Name"]="RefreshBtn"Z["Size"]=UDim2["new"](1,0,0,24)Z["BackgroundColor3"]=tT["PanelBG"]Z["Text"]="⟳ Refresh Players"Z["Font"]=Enum["Font"]["GothamBold"]Z["TextSize"]=1506.5 Z["TextColor3"]=OT;(Instance["new"]("UICorner",Z))["CornerRadius"]=UDim["new"](-721757-(-721757),4)Z["MouseButton1Click"]:Connect(e8)
+    end
+end
+Z["PlayerAdded"]:Connect(e8)Z["PlayerRemoving"]:Connect(e8)gy["MouseButton1Click"]:Connect(function(...)o="Nearest"gy["Text"]="🎯 Selector: Nearest"e8()
+end
+)e8()
+local k8=Instance["new"]("TextButton",Jy)k8["Text"]="Neon Purple  ▼"k8["Font"]=Enum["Font"]["GothamBold"]k8["TextSize"]=-717876.5-(-717885)k8["TextColor3"]=OT k8["Size"]=UDim2["new"](-655399-(-655399),110,0,20)k8["Position"]=UDim2["new"](1,-175,0,12)k8["BackgroundColor3"]=tT["PanelBG"];(Instance["new"]("UICorner",k8))["CornerRadius"]=UDim["new"](0,5)table["insert"](cT,k8)
+local q8=Instance["new"]("Frame",k8)q8["Size"]=UDim2["new"](1,0,0,92)q8["Position"]=UDim2["new"](0,0,-710921-(-710922),4)q8["BackgroundColor3"]=tT["PanelBG"]q8["Visible"]=false;(Instance["new"]("UICorner",q8))["CornerRadius"]=UDim["new"](0,5);(Instance["new"]("UIListLayout",q8))["Padding"]=UDim["new"](0,-593592-(-593593))
+local function  o8(Z,...)OT=RT[Z]k8["Text"]=Z.."  ▼"for Z,N in ipairs(GT)
+    do
+        if N and N["Parent"] then
+            N["Color"]=OT
+        end
+    end
+    for Z,N in ipairs(cT)
+    do
+        if N and N["Parent"] then
+            N["TextColor3"]=OT
+        end
+    end
+    for Z,N in ipairs(vT)
+    do
+        if N and N["Parent"] then
+            N["BackgroundColor3"]=OT
+        end
+    end
+    for Z,N in ipairs(Ky:GetChildren())
+    do
+        if N["Name"]=="RainDrop" then
+            N["BackgroundColor3"]=OT
+        end
+    end
+    for Z,N in ipairs(q8:GetChildren())
+    do
+        if N:IsA("TextButton")and RT[N["Text"]] then
+            N["TextColor3"]=RT[N["Text"]]
+        end
+    end
+    q8["Visible"]=false By()
+end
+for Z,N in pairs(RT)
+do
+    local S=Instance["new"]("TextButton",q8)S["Size"]=UDim2["new"](1,0,0,22)S["BackgroundTransparency"]=1 S["Text"]=Z S["Font"]=Enum["Font"]["GothamSemibold"]S["TextSize"]=9044875.5 S["TextColor3"]=N S["MouseButton1Click"]:Connect(function(...)o8(Z)
+    end
+    )
+end
+k8["MouseButton1Click"]:Connect(function(...)q8["Visible"]=not q8["Visible"]
+end
+)S["InputBegan"]:Connect(function(Z,N,...)if not N and Z["KeyCode"]==Enum["KeyCode"]["F4"] then
+    if Jy["Visible"] then
+        Jy["Visible"]=false hy["Visible"]=true
+    else
+        hy["Visible"]=false Yy()
+    end
+end
+end
+)By()print("✅ SACRED AHK v9.6 LOADED - PORTAL WIDGET + ANIM FIX + LAVA/SHIP LISTO")
